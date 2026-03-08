@@ -1,3 +1,11 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
 #include <iostream>
 
 using namespace std;
@@ -56,7 +64,7 @@ int main(){
     int LinklistChoice;
     int rating;
     string Comments;
-    int choice;
+    char choice;
 
     cout << "Which linked list method method should we use?" << endl;
 
@@ -71,25 +79,25 @@ int main(){
         cin >> rating;
         cout << "Enter review comments: ";
         cin >> Comments;
-        cout << "Enter another review? 1 = y/2 = n: "; 
+        cout << "Enter another review? y/n: "; 
         cin >> choice;
-
-        if(choice == 1){
-        cout << "Enter review rating 0-5: ";
-        cin >> rating;
-        cout << "Enter review comments: ";
-        cin >> Comments;
-        cout << "Enter another review? Y/N: "; 
-        cin >> choice;
-        }
-        else {
-            cout<< "grate..." << endl;
+        
+        if(choice == 'y'){
+            while(choice == 'y'){
+                cout << "Enter review rating 0-5: ";
+                cin >> rating;
+                cout << "Enter review comments: ";
+                cin >> Comments;
+                cout << "Enter another review? y/n: "; 
+                cin >> choice;
+            }
+            
         }
 
 
         InsertAtTheFront(&head, -1);
+    }
 
-    } 
     else if (LinklistChoice == 2){
 
         InsertAtTheBack(&head, 4);
