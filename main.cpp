@@ -1,11 +1,3 @@
-/******************************************************************************
-
-                              Online C++ Compiler.
-               Code, Compile, Run and Debug C++ program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
-
 #include <iostream>
 
 using namespace std;
@@ -21,13 +13,20 @@ struct Node {
 };
 
 Node * head;
+void printList(Node * n){
+    for(int i = 0; i < 10; i++){
+        cout << "review " << i + 1 << ":" << " " << n->data << endl;
+        n = n->next;
+    }
+}
 
 
-
-void InsertAtTheFront(Node**head, int newData){
+void InsertAtTheFront(Node**head, int rating, string Comments){
 
     Node *newNode = new Node();
-    newNode->data = newData;
+
+    newNode->data = rating;
+
 
     newNode->next = *head;
 
@@ -35,6 +34,7 @@ void InsertAtTheFront(Node**head, int newData){
 
 
 }
+
 
 void InsertAtTheBack(Node**head, int newData){
 
@@ -92,20 +92,19 @@ int main(){
                 cin >> choice;
             }
             
-        }
+        } else {
+        InsertAtTheFront(&head, rating, Comments);
+
+        Node *current = head;
+        printList(head);
 
 
-        InsertAtTheFront(&head, -1);
-    }
-
-    else if (LinklistChoice == 2){
+        }   
+    }else if (LinklistChoice == 2){
 
         InsertAtTheBack(&head, 4);
-
     }
     else {
         cout << "input a valid option" << endl;
     }
-    
-    
-}
+    }
