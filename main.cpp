@@ -17,7 +17,8 @@ void printList(Node * n){
 
     cout << "Outputting all reviews:" << endl;
     while(n != nullptr){
-        cout << "review # " << count << ": " << n->rating << n->comment << endl;
+        count ++;
+        cout << "    > Review #" << count << ": " << n->rating << ": " << n->comment << endl;
         sum += n->rating;
         n = n->next;
     }
@@ -40,19 +41,18 @@ void InsertAtTheFront(Node**head, int r, string c){
 }
 
 
-void InsertAtTheBack(Node**head, int newRating){
-
-    Node *newNode = new Node();
+void InsertAtTheBack(Node**head, int newRating, string newComment){
+    Node* newNode = new Node();
     newNode->rating = newRating;
-    newNode->next = NULL;
+    newNode->comment = newComment;
+    newNode->next = nullptr;
 
-    if(*head == NULL){
+    if (*head == nullptr) {
         *head = newNode;
         return;
     }
-    
     Node* last = *head;
-    while (last->next != NULL){
+    while (last->next != nullptr) {
         last = last->next;
     }
     last->next = newNode;
@@ -107,7 +107,7 @@ int main(){
         }   
     }else if (LinklistChoice == 2){
 
-        InsertAtTheBack(&head, 4);
+        InsertAtTheBack(&head, rating, Comments);
     }
     else {
         cout << "input a valid option" << endl;
