@@ -1,21 +1,19 @@
+//COMSC-210 | Lab 18 | Kingsly Bulatao
 #include <iostream>
-
 using namespace std;
 
-//struct cuz easier
 
 struct Node {
 
     int data;
-    
     Node * next;
 
 };
 
-Node * head;
 void printList(Node * n){
-    for(int i = 0; i < 10; i++){
-        cout << "review " << i + 1 << ":" << " " << n->data << endl;
+    Node * head;
+    while(head != NULL){
+        cout << "review " << ":" << " " << n->data << endl;
         n = n->next;
     }
 }
@@ -24,12 +22,10 @@ void printList(Node * n){
 void InsertAtTheFront(Node**head, int rating, string Comments){
 
     Node *newNode = new Node();
-
     newNode->data = rating;
 
 
     newNode->next = *head;
-
     *head = newNode;
 
 
@@ -48,11 +44,9 @@ void InsertAtTheBack(Node**head, int newData){
     }
     
     Node* last = *head;
-
     while (last->next != NULL){
         last = last->next;
     }
-
     last->next = newNode;
 }
 
@@ -94,8 +88,6 @@ int main(){
             
         } else {
         InsertAtTheFront(&head, rating, Comments);
-
-        Node *current = head;
         printList(head);
 
 
