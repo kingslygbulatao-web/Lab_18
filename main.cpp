@@ -5,25 +5,33 @@ using namespace std;
 
 struct Node {
 
-    int data;
+    double rating;
+    string comment;
     Node * next;
 
 };
 
 void printList(Node * n){
-    Node * head;
-    while(head != NULL){
-        cout << "review " << ":" << " " << n->data << endl;
+    double sum = 0;
+    int count = 0;
+
+    cout << "Outputting all reviews:" << endl;
+    while(n != nullptr){
+        cout << "review # " << count << ": " << n->rating << n->comment << endl;
+        sum += n->rating;
         n = n->next;
+    }
+    if (count > 0){
+        double average = sum / count;
+        cout << "Average: " << average << endl;
     }
 }
 
 
-void InsertAtTheFront(Node**head, int rating, string Comments){
-
+void InsertAtTheFront(Node**head, int r, string c){
     Node *newNode = new Node();
-    newNode->data = rating;
-
+    newNode->rating = r;
+    newNode->comment = c;
 
     newNode->next = *head;
     *head = newNode;
@@ -32,10 +40,10 @@ void InsertAtTheFront(Node**head, int rating, string Comments){
 }
 
 
-void InsertAtTheBack(Node**head, int newData){
+void InsertAtTheBack(Node**head, int newRating){
 
     Node *newNode = new Node();
-    newNode->data = newData;
+    newNode->rating = newRating;
     newNode->next = NULL;
 
     if(*head == NULL){
@@ -52,8 +60,8 @@ void InsertAtTheBack(Node**head, int newData){
 
 int main(){
 
+    Node* head = nullptr;
 
-    Node* head = new Node();
 
     int LinklistChoice;
     int rating;
@@ -77,11 +85,16 @@ int main(){
         cin >> choice;
         
         if(choice == 'y'){
+            double rating;
+            string comment;
             while(choice == 'y'){
                 cout << "Enter review rating 0-5: ";
                 cin >> rating;
+                cin.ignore();
                 cout << "Enter review comments: ";
-                cin >> Comments;
+                cin >> comment;
+                getline(cin, comment);
+                InsertAtTheFront(&head, rating, comment);
                 cout << "Enter another review? y/n: "; 
                 cin >> choice;
             }
